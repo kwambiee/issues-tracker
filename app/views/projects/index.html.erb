@@ -1,16 +1,8 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Projects" %>
-
-<h1>Projects</h1>
-
-<div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
-  <% end %>
+<div class="flex justify-between items-center mb-6">
+  <h1 class="text-3xl font-bold">Projects</h1>
+  <%= link_to 'New Project', new_project_path, class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
 </div>
 
-<%= link_to "New project", new_project_path %>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <%= render @projects %>
+</div>

@@ -1,22 +1,24 @@
-<div id="<%= dom_id issue %>">
-  <p>
-    <strong>Title:</strong>
-    <%= issue.title %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= issue.status %>
-  </p>
-
-  <p>
-    <strong>Priority:</strong>
-    <%= issue.priority %>
-  </p>
-
-  <p>
-    <strong>Project:</strong>
-    <%= issue.project_id %>
-  </p>
-
-</div>
+<tr>
+  <td class="px-6 py-4">
+    <%= link_to issue.title, issue, class: "text-blue-600 hover:underline" %>
+  </td>
+  <td class="px-6 py-4">
+    <span class="<%= status_badge_class(issue.status) %>">
+      <%= issue.status.humanize %>
+    </span>
+  </td>
+  <td class="px-6 py-4">
+    <span class="<%= priority_badge_class(issue.priority) %>">
+      <%= issue.priority.humanize %>
+    </span>
+  </td>
+  <td class="px-6 py-4">
+    <%= link_to issue.project.title, issue.project, class: "text-blue-600 hover:underline" %>
+  </td>
+  <td class="px-6 py-4 space-x-2 flex justify-end">
+    <%= link_to 'Edit', edit_issue_path(issue), class: "inline-flex items-center px-4 py-2 text-sm font-medium text-yellow-700 bg-yellow-100 hover:bg-yellow-200 rounded-md transition" %>
+    <%= button_to 'Delete', issue_path(issue), method: :delete, 
+          data: { confirm: 'Are you sure?' }, 
+          class: "inline-flex items-center px-4 py-2 text-sm font-medium text-red-700 bg-red-100 hover:bg-red-200 rounded-md transition" %>
+  </td>
+</tr>

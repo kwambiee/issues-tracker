@@ -1,16 +1,22 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Issues" %>
-
-<h1>Issues</h1>
-
-<div id="issues">
-  <% @issues.each do |issue| %>
-    <%= render issue %>
-    <p>
-      <%= link_to "Show this issue", issue %>
-    </p>
-  <% end %>
+<div class="flex justify-between items-center mb-6">
+  <h1 class="text-3xl font-bold">Issues</h1>
+  <%= link_to 'New Issue', new_project_issue_path(@project), class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
 </div>
 
-<%= link_to "New issue", new_issue_path %>
+
+<div class="overflow-x-auto">
+  <table class="min-w-full bg-white rounded-lg overflow-hidden">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="px-6 py-3 text-left">Title</th>
+        <th class="px-6 py-3 text-left">Status</th>
+        <th class="px-6 py-3 text-left">Priority</th>
+        <th class="px-6 py-3 text-left">Project</th>
+        <th class="px-6 py-3 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      <%= render  @issues %>
+    </tbody>
+  </table>
+</div>
