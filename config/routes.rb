@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
-  resources :issues
-  resources :projects
+  resources :projects do
+    resources :issues, shallow: true
+  end
+
+  resources :issues do
+    collection do
+      get :report
+    end
+  end
+
+  root 'projects#index'
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
