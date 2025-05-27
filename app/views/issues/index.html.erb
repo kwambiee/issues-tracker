@@ -3,6 +3,15 @@
   <%= link_to 'New Issue', new_project_issue_path(@project), class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
 </div>
 
+<div class="flex space-x-2 mb-4">
+  <%= link_to 'Export Excel', issues_path(format: :xlsx), 
+        class: "bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" %>
+        
+  <%= link_to 'Export PDF', issues_path(format: :pdf), 
+        class: "bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700",
+        target: '_blank' %>
+</div>
+
 
 <div class="overflow-x-auto">
   <table class="min-w-full bg-white rounded-lg overflow-hidden">

@@ -26,4 +26,25 @@ RSpec.describe IssuesController, type: :controller do
       expect(response).to redirect_to(issues_url)
     end
   end
+
+    describe "GET #index" do
+    let!(:issue) { create(:issue) }
+
+    it "responds to HTML" do
+      get :index
+      expect(response.content_type).to eq('text/html; charset=utf-8')
+    end
+
+    it "responds to XLSX" do
+      get :index, format: :xlsx
+      expect(response.content_type).to eq('application/xlsx')
+      expect(response.headers['Content-Disposition']).to include('issues-')
+    end
+
+    it "responds to PDF" do
+      get :index, format: :pdf
+      expect(response.content_type).to eq('application/pdf')
+      expect(response.headers['Content-Disposition']).to include('issues-report-')
+    end
+  end
 end

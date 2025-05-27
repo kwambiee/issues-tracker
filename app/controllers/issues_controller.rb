@@ -4,9 +4,22 @@ class IssuesController < ApplicationController
 
   # GET /issues or /issues.json
   def index
-    puts "---project", @project.inspect
     @issues = @project.issues
-    puts "---issues", @issues.inspect
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @issues }
+      format.xlsx { render xlsx: 'index', filename: "issues-#{Date.today}.xlsx" }
+      format.pdf do
+        render pdf: "issues-report-#{Date.today}",
+              template: 'issues/index',
+              layout: 'pdf',
+              orientation: 'Landscape',
+              page_size: 'A4'
+      end
+  end
+    end
+
   end
 
   # GET /issues/1 or /issues/1.json
