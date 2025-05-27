@@ -1,0 +1,81 @@
+<div class="max-w-6xl mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-8">Project Analytics</h1>
+  
+  <div class="grid md:grid-cols-2 gap-8">
+    <!-- Issues by Status Chart -->
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-lg font-semibold mb-4">Issues by Status</h2>
+      <canvas id="statusChart" height="300"></canvas>
+    </div>
+    
+    <!-- Issues by Project Chart -->
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-lg font-semibold mb-4">Issues by Project</h2>
+      <canvas id="projectChart" height="300"></canvas>
+    </div>
+  </div>
+  
+  <div class="mt-6">
+    <%= link_to root_path, class: "text-blue-600 hover:text-blue-800 text-sm font-medium" do %>
+      ← Back to Projects
+    <% end %>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Status Chart (Pie)
+  const statusCtx = document.getElementById('statusChart').getContext('2d');
+  new Chart(statusCtx, {
+    type: 'pie',
+    data: {
+      labels: <%= raw @status_data.keys.map(&:humanize) %>,
+      datasets: [{
+        data: <%= raw @status_data.values %>,
+        backgroundColor: [
+          '#3B82F6', // blue for new
+          '#F59E0B', // yellow for in progress
+          '#10B981', // green for closed
+          '#EF4444', // red for other statuses
+          '#8B5CF6'  // purple for other statuses
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'right',
+        }
+      }
+    }
+  });
+
+  // Project Chart (Bar)
+  const projectCtx = document.getElementById('projectChart').getContext('2d');
+  new Chart(projectCtx, {
+    type: 'bar',
+    data: {
+      labels: <%= raw @project_data.keys %>,
+      datasets: [{
+        label: 'Number of Issues',
+        data: <%= raw @project_data.values %>,
+        backgroundColor: '#3B82F6',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            precision: 0
+          }
+        }
+      }
+    }
+  });
+});
+</script>

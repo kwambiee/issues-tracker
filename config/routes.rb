@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "charts/index"
   resources :projects do
     resources :issues, shallow: true
   end
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
       get :report
     end
   end
+  get '/charts', to: 'charts#index', as: 'charts'
 
   root 'projects#index'
 
