@@ -1,18 +1,21 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: %i[ show edit update destroy ]
+  before_action :set_project, only: %i[ index new create show edit update destroy ]
 
   # GET /issues or /issues.json
   def index
-    @issues = Issue.all
+    puts "---project", @project.inspect
+    @issues = @project.issues
+    puts "---issues", @issues.inspect
   end
 
   # GET /issues/1 or /issues/1.json
   def show
   end
 
-  # GET /issues/new
+  # GET /projects/:project_id/issues/new(.:format
   def new
-    @issue = Issue.new
+    @issue = @project.issues.build
   end
 
   # GET /issues/1/edit
@@ -49,22 +52,25 @@ class IssuesController < ApplicationController
 
   # DELETE /issues/1 or /issues/1.json
   def destroy
+    @project = @issue.project
     @issue.destroy!
-
+  
     respond_to do |format|
-      format.html { redirect_to issues_path, status: :see_other, notice: "Issue was successfully destroyed." }
+      format.html { redirect_to project_issues_path(@project), status: :see_other, notice: "Issue was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_issue
-      @issue = Issue.find(params.expect(:id))
+      @issue = Issue.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    def set_project
+      @project = Project.find(params[:project_id]) if params[:project_id]
+    end
+
     def issue_params
-      params.expect(issue: [ :title, :status, :priority, :project_id ])
+      params.require(:issue).permit(:title, :description, :status, :priority, :project_id)
     end
 end

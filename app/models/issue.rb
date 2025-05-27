@@ -2,9 +2,9 @@ class Issue < ApplicationRecord
     belongs_to :project
 
     enum :status, { 
-  new: "New",
-  in_progress: "In Progress", 
-  closed: "Closed" 
+    new: "New",
+    in_progress: "In Progress", 
+    closed: "Closed" 
 }, prefix: true, default: :new
 
 enum :priority, { 

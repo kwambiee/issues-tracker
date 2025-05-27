@@ -63,3 +63,17 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# For Excel export
+gem 'axlsx_rails'
+
+# For PDF export
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
+# For charts
+gem 'chartkick'
+
+gem "importmap-rails"
+
+gem 'tailwindcss-rails'
