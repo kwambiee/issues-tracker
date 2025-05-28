@@ -91,3 +91,6 @@ group :test do
   gem 'shoulda-matchers', '~> 5.0'
 end
 
+group :test do
+  gem 'rails-controller-testing'
+end
