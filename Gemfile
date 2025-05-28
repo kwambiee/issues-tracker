@@ -94,3 +94,5 @@ end
 group :test do
   gem 'rails-controller-testing'
 end
+
+gem 'dotenv', groups: [:development, :test]

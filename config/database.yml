@@ -19,15 +19,11 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   # The database host. Defaults to localhost.
-  host: localhost
-  
-
+  url: <%= ENV["DATABASE_URL"] %>
 
 development:
   <<: *default
   database: issues_tracker_development
-  
-
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -85,18 +81,19 @@ test:
 #
 production:
   primary: &primary_production
-    <<: *default
-    database: issues_tracker_production
-    username: issues_tracker
-    password: <%= ENV["ISSUES_TRACKER_DATABASE_PASSWORD"] %>
+    url: <%= ENV["DATABASE_URL"] %>
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
   cache:
     <<: *primary_production
     database: issues_tracker_production_cache
     migrations_paths: db/cache_migrate
+
   queue:
     <<: *primary_production
     database: issues_tracker_production_queue
     migrations_paths: db/queue_migrate
+
   cable:
     <<: *primary_production
     database: issues_tracker_production_cable

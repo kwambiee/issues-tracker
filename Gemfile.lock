@@ -428,6 +428,7 @@ DEPENDENCIES
   chartkick
   cssbundling-rails
   debug
+  dotenv
   factory_bot_rails
   faker
   importmap-rails
