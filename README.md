@@ -86,12 +86,6 @@ Seeds will populate sample projects and issues for testing.
 bundle exec rspec
 ```
 
-Or with built-in Rails test framework:
-
-```bash
-rails test
-```
-
 ---
 
 ## 🚀 How to Run the App
@@ -151,10 +145,12 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 👩‍💻 Author
 
-**Kwamboka Joy (kwambiee)**
+**Joy Kwamboka**
 
 GitHub: [kwambiee](https://github.com/kwambiee)
-LinkedIn: [Kwamboka Joy](https://www.linkedin.com/in/kwamboka-joy/)
+
+LinkedIn: [Kwamboka Joy](https://www.linkedin.com/in/joy-kwamboka/)
+
 Email: [kwambokaj2.jk@gmail.com](mailto:kwambokaj2.jk@gmail.com)
 
 ---
