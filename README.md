@@ -120,14 +120,28 @@ You can deploy this app using platforms like **Render**, **Heroku**, or **Railwa
 
 ---
 
-## 🎥 Video Demonstration
-
-📺 Watch a walkthrough of the app here:
-[![Issue Tracker Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE)
-
-Replace the link with your actual video URL.
+## Deployed Link
+[Issue Tracker Live](https://issues-tracker-cuo8.onrender.com/)
 
 ---
+
+## 🎥 Video Demonstration
+
+Watch a walkthrough of the app here:
+[Issue Tracker Demo](https://www.loom.com/share/c6084d2915df4137ac333e5e05b6cca6?sid=b11d2b5d-9e99-42f9-9b15-8dabe1b693fc)
+
+---
+
+## 📸 Screenshots
+### Charts 
+
+![alt text](image.png)
+
+### PDF Report 
+![alt text](image-1.png)
+
+### Excel Report 
+![alt text](image-2.png)
 
 ## 📄 License
 
