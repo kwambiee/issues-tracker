@@ -88,7 +88,7 @@ gem 'caxlsx'
 gem 'caxlsx_rails'
 
 group :test do
-  gem 'shoulda-matchers', '~> 5.0'
+  gem 'shoulda-matchers', '~> 6.5'
 end
 
 group :test do
