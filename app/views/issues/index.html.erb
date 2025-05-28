@@ -4,11 +4,11 @@
 </div>
 
 <div class="flex space-x-2 mb-4">
-  <%= link_to 'Export Excel', issues_path(format: :xlsx), 
-        class: "bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" %>
+  <%= link_to 'Export Excel', project_issues_path(@project,format: :xlsx), 
+        class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
         
-  <%= link_to 'Export PDF', issues_path(format: :pdf), 
-        class: "bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700",
+  <%= link_to 'Export PDF', project_issues_path(@project,format: :pdf), 
+        class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700",
         target: '_blank' %>
 </div>
 
@@ -28,4 +28,9 @@
       <%= render  @issues %>
     </tbody>
   </table>
+  <div class="mt-6">
+    <%= link_to projects_path, class: "text-blue-600 hover:text-blue-800 text-sm font-medium" do %>
+      ← Back to Projects
+    <% end %>
+  </div>
 </div>

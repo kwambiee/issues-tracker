@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: %i[ show edit update destroy ]
-  before_action :set_project, only: %i[ index new create show edit update destroy ]
+  before_action :set_project, only: %i[ index show new create edit update destroy ]
 
   # GET /issues or /issues.json
   def index
@@ -23,6 +23,7 @@ class IssuesController < ApplicationController
 
   # GET /issues/1 or /issues/1.json
   def show
+  
   end
 
   # GET /projects/:project_id/issues/new(.:format
@@ -79,7 +80,11 @@ class IssuesController < ApplicationController
     end
 
     def set_project
-      @project = Project.find(params[:project_id]) if params[:project_id]
+      @project = if params[:project_id]
+                  Project.find(params[:project_id])
+                  elsif @issue
+                    @issue.project
+                  end
     end
 
     def issue_params
