@@ -1,0 +1,8 @@
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+/* Ensure charts are responsive */
+canvas {
+  width: 100% !important;
+  height: auto !important;
+}

@@ -1,0 +1,16 @@
+<% content_for :title, "New project" %>
+
+<div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900">New project</h1>
+  </div>
+
+<%= render "form", project: @project %>
+
+<br>
+
+<div class="mt-6">
+    <%= link_to projects_path, class: "text-blue-600 hover:text-blue-800 text-sm font-medium" do %>
+      ← Back to Projects
+    <% end %>
+  </div>
+
