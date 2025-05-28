@@ -17,7 +17,19 @@ RSpec.describe Issue, type: :model do
   end
 
   describe "enums" do
-    it { should define_enum_for(:status).with_values(new: "New", in_progress: "In Progress", closed: "Closed") }
-    it { should define_enum_for(:priority).with_values(low: 1, medium: 3, high: 5) }
+    it "defines correct values for status enum" do
+      expect(Issue.statuses).to eq({
+        "new" => "New",
+        "in_progress" => "In Progress",
+        "closed" => "Closed"
+      })
+    end
+    it "defines correct values for priority enum" do
+      expect(Issue.priorities).to eq({
+        "low" => 1,
+        "medium" => 3,
+        "high" => 5
+      })
+    end
   end
 end

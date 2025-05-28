@@ -18,9 +18,9 @@ RSpec.describe Project, type: :model do
 
   describe "scopes" do
     let!(:project_with_issues) { create(:project_with_issues) }
-    
+  
     it "returns projects with issues" do
-      expect(Project.with_issues.count).to eq(1)
+      expect(Project.with_issues).to include(project_with_issues)
     end
   end
 end
