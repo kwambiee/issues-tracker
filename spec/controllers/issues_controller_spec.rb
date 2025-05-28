@@ -23,28 +23,30 @@ RSpec.describe IssuesController, type: :controller do
     it "redirects to the issues list" do
       issue = create(:issue, project: project)
       delete :destroy, params: { id: issue.id }
-      expect(response).to redirect_to(issues_url)
+      expect(response).to redirect_to(project_issues_url(project))
     end
   end
 
-    describe "GET #index" do
-    let!(:issue) { create(:issue) }
+  describe "GET #index" do
+    before do
+      create_list(:issue, 3, project: project)
+    end
 
     it "responds to HTML" do
-      get :index
-      expect(response.content_type).to eq('text/html; charset=utf-8')
+      get :index, params: { project_id: project.id }
+      expect(response.content_type).to eq 'text/html; charset=utf-8'
     end
 
     it "responds to XLSX" do
-      get :index, format: :xlsx
-      expect(response.content_type).to eq('application/xlsx')
-      expect(response.headers['Content-Disposition']).to include('issues-')
+      get :index, params: { project_id: project.id, format: :xlsx }
+      expect(response.content_type).to eq 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      expect(response.headers['Content-Disposition']).to include("issues-#{Date.today}")
     end
 
     it "responds to PDF" do
-      get :index, format: :pdf
-      expect(response.content_type).to eq('application/pdf')
-      expect(response.headers['Content-Disposition']).to include('issues-report-')
+      get :index, params: { project_id: project.id, format: :pdf }
+      expect(response.content_type).to eq 'application/pdf'
+      expect(response.headers['Content-Disposition']).to include("issues-report-#{Date.today}")
     end
   end
 end

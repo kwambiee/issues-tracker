@@ -17,7 +17,6 @@ class IssuesController < ApplicationController
               orientation: 'Landscape',
               page_size: 'A4'
       end
-  end
     end
 
   end
